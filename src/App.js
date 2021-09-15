@@ -5,7 +5,7 @@ import NowPlayingPage from "./pages/NowPlayingPage";
 import Navigation from "./pages/partials/Navigation";
 import PopularFilmsPage from "./pages/PopularFilmsPage";
 import TopRated from "./pages/TopRated";
-import GenresPage from "./pages/GenresPage";
+import GenresPage from "./pages/GenresPageNew";
 import PageNotFound from "./pages/PageNotFound";
 import FilmDetails from "./pages/FilmDetails";
 import ActorInfoPage from "./pages/ActorInfoPage";
