@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
-import { useParams } from "react-router";
-import { useState } from "react";
+import { useParams, useHistory, useLocation } from "react-router";
+import { useState, useEffect } from "react";
+import { useUrlSearchParams } from "use-url-search-params";
 //API
 import { getGenre } from "../services/fetchData";
 import { getGenres } from "../services/fetchData";
@@ -8,12 +9,22 @@ import { getGenres } from "../services/fetchData";
 import GenreButtons from "../components/GenreButtons";
 import Pagination from "../components/Pagination";
 import MovieCard from "../components/MovieCard";
+import WelcomeGenreDetails from "../components/WelcomeGenreDetails";
 //Styling
 import gridStyle from "../css/Grid.module.css";
 
 const GenrePage = () => {
+  const { pathname } = useLocation();
+  const history = useHistory();
+  //params to get genre id and genre name
   const { id, genretype } = useParams();
-  const [page, setPage] = useState(1);
+
+  // const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams, setSearchParams] = useUrlSearchParams(
+    { page: 1, q: "" },
+    { page: Number }
+  );
+  const [page, setPage] = useState(searchParams.page);
 
   const {
     data: buttonData,
@@ -25,15 +36,18 @@ const GenrePage = () => {
   });
 
   const { data, isLoading, error, isError, isPreviousData } = useQuery(
-    ["getGenre", id, page],
+    ["getGenre", id, searchParams.page],
     () => {
-      return getGenre(id, page);
+      return getGenre(id, searchParams.page);
     }
   );
 
-  // useEffect(() => {
-  //   data && setPage(data.page);
-  // }, [data]);
+  useEffect(() => {
+    setSearchParams({ ...searchParams, page });
+  }, [id, page]);
+
+  console.log("pathname", pathname);
+  console.log("history", history);
 
   return (
     <div className={gridStyle.supercontainer}>
@@ -47,26 +61,29 @@ const GenrePage = () => {
         )}
       </div>
 
-      {data?.results && (
-        <div>
-          <h1>Movies from {genretype}</h1>
-          <div className={gridStyle.container}>
-            {isLoading && <p>Loading....</p>}
-            {isError && <p>There has been an error: {error}</p>}
-            {data?.results && (
-              <>
+      <div>
+        {id ? <h1>Genre: {genretype}</h1> : ""}
+        {isLoading && <p>Loading....</p>}
+        {isError && <p>There has been an error: {error}</p>}
+
+        {id ? (
+          data?.results && (
+            <>
+              <div className={gridStyle.container}>
                 <MovieCard movies={data.results} />
-                <Pagination
-                  page={page}
-                  setPage={setPage}
-                  isPreviousData={isPreviousData}
-                  hasMore={data.results[0]}
-                />
-              </>
-            )}
-          </div>
-        </div>
-      )}
+              </div>
+              <Pagination
+                page={searchParams.page}
+                setPage={setPage}
+                isPreviousData={isPreviousData}
+                hasMore={data.results[0]}
+              />
+            </>
+          )
+        ) : (
+          <WelcomeGenreDetails />
+        )}
+      </div>
     </div>
   );
 };

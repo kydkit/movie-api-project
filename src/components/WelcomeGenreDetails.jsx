@@ -1,12 +1,12 @@
 export default function WelcomeGenreDetails() {
   return (
     <div>
-      <h3>
-        Click on any genre for a list of those movies{" "}
+      <h4>
+        Click on a genre for movies{" "}
         <span role="img" aria-label="movie camera">
           🎥
         </span>{" "}
-      </h3>
+      </h4>
     </div>
   );
 }
