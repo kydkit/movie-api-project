@@ -62,7 +62,7 @@ const GenrePage = () => {
       </div>
 
       <div>
-        {id ? <h1>Genre: {genretype}</h1> : ""}
+        {id ? <h1>Movie from: {genretype}</h1> : ""}
         {isLoading && <p>Loading....</p>}
         {isError && <p>There has been an error: {error}</p>}
 
