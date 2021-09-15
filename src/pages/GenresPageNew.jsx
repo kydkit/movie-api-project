@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { useParams } from "react-router";
-import { useState } from "react";
+import { useParams, useHistory, useLocation } from "react-router";
+import { useState, useEffect } from "react";
 import { useUrlSearchParams } from "use-url-search-params";
 //API
 import { getGenre } from "../services/fetchData";
@@ -14,8 +14,17 @@ import WelcomeGenreDetails from "../components/WelcomeGenreDetails";
 import gridStyle from "../css/Grid.module.css";
 
 const GenrePage = () => {
+  const { pathname } = useLocation();
+  const history = useHistory();
+  //params to get genre id and genre name
   const { id, genretype } = useParams();
-  const [page, setPage] = useState(1);
+
+  // const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams, setSearchParams] = useUrlSearchParams(
+    { page: 1, q: "" },
+    { page: Number }
+  );
+  const [page, setPage] = useState(searchParams.page);
 
   const {
     data: buttonData,
@@ -27,15 +36,19 @@ const GenrePage = () => {
   });
 
   const { data, isLoading, error, isError, isPreviousData } = useQuery(
-    ["getGenre", id, page],
+    ["getGenre", id, searchParams.page],
     () => {
-      return getGenre(id, page);
+      return getGenre(id, searchParams.page);
     }
   );
 
-  // useEffect(() => {
-  //   data && setPage(data.page);
-  // }, [data]);
+  useEffect(() => {
+    setSearchParams({ ...searchParams, page });
+    // eslint-disable-next-line
+  }, [id, page]);
+
+  console.log("pathname", pathname);
+  console.log("history", history);
 
   return (
     <div className={gridStyle.supercontainer}>
@@ -61,7 +74,7 @@ const GenrePage = () => {
                 <MovieCard movies={data.results} />
               </div>
               <Pagination
-                page={page}
+                page={searchParams.page}
                 setPage={setPage}
                 isPreviousData={isPreviousData}
                 hasMore={data.results[0]}
