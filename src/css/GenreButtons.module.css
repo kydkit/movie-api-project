@@ -1,0 +1,9 @@
+.supercontainer {
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 2rem;
+}
