@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
 import { useState } from "react";
+import { useUrlSearchParams } from "use-url-search-params";
 //API
 import { getGenre } from "../services/fetchData";
 import { getGenres } from "../services/fetchData";
