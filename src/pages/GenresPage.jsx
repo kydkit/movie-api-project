@@ -62,21 +62,22 @@ const GenrePage = () => {
       </div>
 
       <div>
+        {id ? <h1>Genre: {genretype}</h1> : ""}
         {isLoading && <p>Loading....</p>}
         {isError && <p>There has been an error: {error}</p>}
+
         {id ? (
           data?.results && (
             <>
-              <h1>Movies from {genretype}</h1>
+              <div className={gridStyle.container}>
+                <MovieCard movies={data.results} />
+              </div>
               <Pagination
                 page={searchParams.page}
                 setPage={setPage}
                 isPreviousData={isPreviousData}
                 hasMore={data.results[0]}
               />
-              <div className={gridStyle.container}>
-                <MovieCard movies={data.results} />
-              </div>
             </>
           )
         ) : (
