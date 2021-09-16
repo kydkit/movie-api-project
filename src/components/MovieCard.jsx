@@ -9,7 +9,10 @@ const MovieCard = ({ movies }) => {
         src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
         alt={`movie poster for ${movie.title}`}
       />
-      <Link to={`/filmdetails/${movie.id}`} className="btn btn-primary my-3">
+      <Link
+        to={`/filmdetails/${movie.id}`}
+        className="btn btn-outline-secondary my-3"
+      >
         Get Info
       </Link>
     </div>

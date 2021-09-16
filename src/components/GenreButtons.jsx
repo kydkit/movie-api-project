@@ -10,7 +10,7 @@ const GenreButtons = ({ genreButtons }) => {
           <Link
             key={button.id}
             to={`/genre/${button.id}/${button.name}`}
-            className="btn btn-primary btn m-2"
+            className="btn btn-dark btn m-2"
           >
             {button.name}
           </Link>

@@ -3,11 +3,11 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 
 const Navigation = () => {
   return (
-    <Navbar bg="primary" variant="dark" expand="md">
+    <Navbar bg="dark" variant="dark" expand="md">
       <Container>
         <Link to="/" className="navbar-brand">
           <span role="img" aria-label="Home">
-            🏠 Home
+            📺 🍿 MovieAPI
           </span>
         </Link>
 

@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { useParams, useHistory, useLocation } from "react-router";
+import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { useUrlSearchParams } from "use-url-search-params";
 //API
@@ -14,18 +14,15 @@ import WelcomeGenreDetails from "../components/WelcomeGenreDetails";
 import gridStyle from "../css/Grid.module.css";
 
 const GenrePage = () => {
-  const { pathname } = useLocation();
-  const history = useHistory();
   //params to get genre id and genre name
   const { id, genretype } = useParams();
-
-  // const [searchQuery, setSearchQuery] = useState("");
   const [searchParams, setSearchParams] = useUrlSearchParams(
     { page: 1, q: "" },
     { page: Number }
   );
   const [page, setPage] = useState(searchParams.page);
 
+  //get data for genre buttons
   const {
     data: buttonData,
     isLoading: buttonIsLoading,
@@ -34,20 +31,19 @@ const GenrePage = () => {
   } = useQuery("getGenres", () => {
     return getGenres();
   });
-
+  //get data for genre results
   const { data, isLoading, error, isError, isPreviousData } = useQuery(
     ["getGenre", id, searchParams.page],
     () => {
       return getGenre(id, searchParams.page);
-    }
+    },
+    { keepPreviousData: true }
   );
 
   useEffect(() => {
     setSearchParams({ ...searchParams, page });
+    // eslint-disable-next-line
   }, [id, page]);
-
-  console.log("pathname", pathname);
-  console.log("history", history);
 
   return (
     <div className={gridStyle.supercontainer}>
@@ -62,7 +58,7 @@ const GenrePage = () => {
       </div>
 
       <div>
-        {id ? <h1>Movie from: {genretype}</h1> : ""}
+        {id ? <h1>Genre: {genretype}</h1> : ""}
         {isLoading && <p>Loading....</p>}
         {isError && <p>There has been an error: {error}</p>}
 

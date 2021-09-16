@@ -3,13 +3,14 @@ import { Route, Switch } from "react-router-dom";
 
 import NowPlayingPage from "./pages/NowPlayingPage";
 import Navigation from "./pages/partials/Navigation";
-import PopularFilmsPage from "./pages/PopularFilmsPage";
+import Home from "./pages/HomePage";
 import TopRated from "./pages/TopRated";
-import GenresPage from "./pages/GenresPageNew";
+import GenresPage from "./pages/GenresPage";
 import PageNotFound from "./pages/PageNotFound";
 import FilmDetails from "./pages/FilmDetails";
 import ActorInfoPage from "./pages/ActorInfoPage";
 import TrendingPage from "./pages/TrendingPage";
+import SearchResults from "./pages/SearchResultsPage2";
 
 function App() {
   return (
@@ -18,7 +19,11 @@ function App() {
 
       <Switch>
         <Route exact path="/">
-          <PopularFilmsPage />
+          <Home />
+        </Route>
+
+        <Route path="/search-results">
+          <SearchResults />
         </Route>
 
         <Route path="/top-rated">
