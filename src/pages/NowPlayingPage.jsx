@@ -10,6 +10,7 @@ const NowPlayingPage = () => {
   const { data, isLoading, error, isError } = useQuery("nowPlaying", () => {
     return getNowPlaying();
   });
+
   return (
     <div className={gridStyle.supercontainer}>
       <h1>Now Playing</h1>

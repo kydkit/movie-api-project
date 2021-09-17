@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+
 //API
 import { getFilmInfo, getRelatedFilms } from "../services/fetchData";
 //Component
@@ -11,7 +12,6 @@ import style from "../css/FilmDetails.module.css";
 
 const FilmDetails = () => {
   const { id } = useParams();
-
   const { data, isLoading, error, isError } = useQuery(
     ["filmDetails", id],
     () => {

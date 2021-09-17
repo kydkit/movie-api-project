@@ -11,6 +11,7 @@ import FilmDetails from "./pages/FilmDetails";
 import ActorInfoPage from "./pages/ActorInfoPage";
 import TrendingPage from "./pages/TrendingPage";
 import SearchResults from "./pages/SearchResultsPage2";
+import PrevTen from "./pages/PrevTen";
 
 function App() {
   return (
@@ -52,6 +53,10 @@ function App() {
 
         <Route path="/trending">
           <TrendingPage />
+        </Route>
+
+        <Route path="/prev-ten">
+          <PrevTen />
         </Route>
 
         <Route>

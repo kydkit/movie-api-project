@@ -7,8 +7,9 @@ const Navigation = () => {
       <Container>
         <Link to="/" className="navbar-brand">
           <span role="img" aria-label="Home">
-            📺 🍿 MovieAPI
+            📺 🍿
           </span>
+          MovieAPI
         </Link>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -26,6 +27,9 @@ const Navigation = () => {
             </NavLink>
             <NavLink to="/genres" className="nav-link">
               Genres
+            </NavLink>
+            <NavLink to="/prev-ten" className="nav-link">
+              Previously Clicked
             </NavLink>
           </Nav>
         </Navbar.Collapse>
