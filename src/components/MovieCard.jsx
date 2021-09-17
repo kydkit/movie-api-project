@@ -6,9 +6,9 @@ import cardStyle from "../css/MovieCard.module.css";
 const MovieCard = ({ movies }) => {
   const [savedFilm] = useLocalStorage("setTen", []);
 
-  //storing clicked films to local storage
+  //once clicked, movie will be saved to local storage
   const handleClick = (movie) => {
-    if (savedFilm.length > 9 && savedFilm.indexOf(movie.id) < 0) {
+    if (savedFilm.length > 9) {
       savedFilm.pop(9);
     }
     savedFilm.unshift(movie);

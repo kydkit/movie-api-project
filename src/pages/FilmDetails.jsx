@@ -12,6 +12,8 @@ import style from "../css/FilmDetails.module.css";
 
 const FilmDetails = () => {
   const { id } = useParams();
+
+  //get info to the film we clicked on
   const { data, isLoading, error, isError } = useQuery(
     ["filmDetails", id],
     () => {
@@ -19,6 +21,7 @@ const FilmDetails = () => {
     }
   );
 
+  //get data for relatedFilms to the one we clicked on
   const {
     data: relatedFilmData,
     isLoading: relatedFilmIsLoading,

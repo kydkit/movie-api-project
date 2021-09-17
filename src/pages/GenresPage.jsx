@@ -17,7 +17,7 @@ const GenrePage = () => {
   //params to get genre id and genre name
   const { id, genretype } = useParams();
   const [searchParams, setSearchParams] = useUrlSearchParams(
-    { page: 1, q: "" },
+    { page: 1 },
     { page: Number }
   );
   const [page, setPage] = useState(searchParams.page);
@@ -31,6 +31,7 @@ const GenrePage = () => {
   } = useQuery("getGenres", () => {
     return getGenres();
   });
+
   //get data for genre results
   const { data, isLoading, error, isError, isPreviousData } = useQuery(
     ["getGenre", id, searchParams.page],

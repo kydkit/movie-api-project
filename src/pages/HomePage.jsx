@@ -7,6 +7,7 @@ const HomePage = () => {
   const history = useHistory();
   const [search, setSearch] = useState("");
 
+  //useHistory takes "search" as state in the url, which can be accessed at its destination with useLocation()
   const submitSearch = (e) => {
     e.preventDefault();
     history.push("/search-results", [search]);
