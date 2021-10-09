@@ -19,7 +19,7 @@ const TrendingWeeklyPage = () => {
   };
 
   return (
-    <>
+    <div className={gridStyle.supercontainer}>
       <h1>Trending Weekly</h1>
       <p className={style.text} onClick={handleDaily}>
         Click for daily trends
@@ -29,7 +29,7 @@ const TrendingWeeklyPage = () => {
         {isError && <p>There has been an error: {error}</p>}
         {data?.data.results && <MovieCard movies={data.data.results} />}
       </div>
-    </>
+    </div>
   );
 };
 
