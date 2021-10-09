@@ -9,9 +9,10 @@ import GenresPage from "./pages/GenresPage";
 import PageNotFound from "./pages/PageNotFound";
 import FilmDetails from "./pages/FilmDetails";
 import ActorInfoPage from "./pages/ActorInfoPage";
-import TrendingPage from "./pages/TrendingPage";
 import SearchResults from "./pages/SearchResultsPage2";
 import PrevTen from "./pages/PrevTen";
+import TrendingWeeklyPage from "./pages/TrendingWeekly";
+import TrendingDailyPage from "./pages/TrendingDaily";
 
 function App() {
   return (
@@ -51,8 +52,12 @@ function App() {
           <GenresPage />
         </Route>
 
-        <Route path="/trending">
-          <TrendingPage />
+        <Route path="/trending-daily">
+          <TrendingDailyPage />
+        </Route>
+
+        <Route path="/trending-weekly">
+          <TrendingWeeklyPage />
         </Route>
 
         <Route path="/prev-ten">
