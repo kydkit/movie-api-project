@@ -18,7 +18,6 @@ const Navigation = () => {
             <NavLink to="/trending-daily" className="nav-link">
               Trending
             </NavLink>
-
             <NavLink to="/top-rated" className="nav-link">
               Top Rated
             </NavLink>

@@ -1,7 +1,6 @@
 import { useQuery } from "react-query";
 import { useState, useEffect } from "react";
 import { useUrlSearchParams } from "use-url-search-params";
-import { useLocation } from "react-router";
 //API
 import { searchData } from "../services/fetchData";
 //Component
@@ -13,10 +12,8 @@ import SearchForm2 from "../components/SearchForm2";
 import NothingHere from "../components/NothingHere";
 
 const SearchPage = () => {
-  const path = useLocation();
   const [searchParams, setSearchParams] = useUrlSearchParams(
-    //path.state is initial value which is being sent in useHistory url from home page
-    { page: 1, q: path.state },
+    { page: 1, q: "" },
     { page: Number }
   );
   const [page, setPage] = useState(searchParams.page);
@@ -49,8 +46,6 @@ const SearchPage = () => {
     setSearchParams({ page: 1, q: "" });
   };
 
-  //when page changes, the page value is changed in the url params.
-  //searchParams.page gets sent to api endpoint to fetch the correct page
   useEffect(() => {
     setSearchParams({ ...searchParams, page });
     // eslint-disable-next-line

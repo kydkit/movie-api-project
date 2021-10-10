@@ -63,7 +63,7 @@ export const weeklyTrending = async () => {
   return await axios.get(`/trending/movie/week?${API_KEY}`);
 };
 
-export const searchData = async (page, q = null) => {
+export const searchData = async ({ page, q }) => {
   if (!q) {
     return;
   }
